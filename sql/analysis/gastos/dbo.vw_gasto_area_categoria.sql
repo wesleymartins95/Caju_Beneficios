@@ -1,13 +1,11 @@
 -- Gasto por ÁREA (segmento de empresa) e tipo de benefício
 --     Insight: qual segmento mais usa qual produto
-USE Caju_dw
-GO
-
 USE Caju_dw;
 GO
 
 CREATE VIEW dbo.vw_gasto_area_categoria AS
 SELECT
+    s.status_transacao,
     e.segmento,
     e.porte,
     p.linha                                 AS produto_caju,
@@ -24,5 +22,5 @@ JOIN dbo.DIM_PRODUTO          p ON f.sk_produto  = p.sk_produto
 JOIN dbo.DIM_DATA             d ON f.sk_data     = d.sk_data
 JOIN dbo.DIM_STATUS_TRANSACAO s ON f.sk_status   = s.sk_status
 WHERE s.is_aprovada = 1
-GROUP BY e.segmento, e.porte, p.linha, p.categoria_produto, d.mes_ano_label
+GROUP BY e.segmento, e.porte, p.linha, p.categoria_produto, d.mes_ano_label,s.status_transacao
 GO
