@@ -8,29 +8,32 @@ WITH mrr_mensal AS (
         d.mes_ano_label,
         d.ano,
         d.trimestre,
-        SUM(f.valor_brl)                        AS mrr_total_brl,
-        SUM(f.valor_brl) * 12                   AS arr_brl,
-        COUNT(DISTINCT f.sk_empresa)             AS clientes_ativos,
-        COUNT(DISTINCT f.sk_colaborador)         AS colaboradores_ativos,
-        COUNT(*)                                 AS total_transacoes,
-        -- GMV inclui todas as transações (aprovadas + negadas + estornadas)
-        SUM(f.valor_brl)                        AS gmv_brl
+        SUM(e.mrr_brl) AS mrr_total_brl,
+        SUM(e.mrr_brl) * 12 AS arr_brl,
+        COUNT(DISTINCT f.sk_empresa) AS clientes_ativos,
+        COUNT(DISTINCT f.sk_colaborador) AS colaboradores_ativos,
+        COUNT(*) AS total_transacoes,
+        SUM(f.valor_brl) AS gmv_brl
     FROM dbo.FACT_TRANSACAO f
-    JOIN dbo.DIM_DATA d
-        ON f.sk_data = d.sk_data
-    JOIN dbo.DIM_STATUS_TRANSACAO s
-        ON f.sk_status = s.sk_status
+    JOIN dbo.DIM_DATA d ON f.sk_data = d.sk_data
+    JOIN dbo.DIM_STATUS_TRANSACAO s ON f.sk_status = s.sk_status
+    JOIN dbo.DIM_EMPRESA e ON f.sk_empresa = e.sk_empresa
     WHERE s.is_aprovada = 1
     GROUP BY d.mes_ano_label, d.ano, d.trimestre
 ),
 meta_mensal AS (
-    -- Substitua por JOIN com tabela de metas real quando disponível
-    -- Por ora usa MRR do mês anterior + 10%
     SELECT
         mes_ano_label,
         mrr_total_brl,
         LAG(mrr_total_brl) OVER (ORDER BY mes_ano_label) * 1.10 AS meta_mrr_brl
     FROM mrr_mensal
+),
+mrr_atual AS (
+    SELECT
+        mes_ano_label,
+        mrr_total_brl
+    FROM mrr_mensal
+    WHERE mes_ano_label = (SELECT MAX(mes_ano_label) FROM mrr_mensal)
 ),
 churn_mensal AS (
     SELECT
