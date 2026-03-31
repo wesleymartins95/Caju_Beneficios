@@ -1,8 +1,8 @@
-# 📚 Dicionário de Dados — Caju Benefícios
+# 📚 Dicionário de Dados — Cartão Benefícios
 
-> Projeto de análise de receita e engajamento da Caju Benefícios.  
+> Projeto de análise de receita e engajamento.  
 > Dados simulados para fins de estudo e desenvolvimento de dashboards.  
-> Stack: SQL Server 2021 · Power BI Desktop 2.152 · Star Schema
+> Stack: SQL Server 2021 · Power BI Desktop 2.152 · MIRO- Star Schema
 
 ---
 
@@ -244,7 +244,7 @@ data/
 | Camada | Tecnologia |
 |---|---|
 | Armazenamento | SQL Server 2021 |
-| Modelagem | Star Schema — 1 Fato + 6 Dimensões |
+| Modelagem | Miro Star Schema — 1 Fato + 6 Dimensões |
 | Transformação | Views SQL (`vw_kpis_executivos`, `vw_saude_carteira`) |
 | Visualização | Power BI Desktop 2.152 (março/2026) |
 | Linguagem analítica | DAX (medidas de apresentação) |
