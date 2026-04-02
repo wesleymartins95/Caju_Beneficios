@@ -3,12 +3,15 @@
 
 ## Visão Geral
 Este projeto nasceu na necessidade de corrigir e estruturar indicadores de receita recorrente (MRR,ARR,Churn,Atingimento) que estava inconsistentes e dificultavam a tomada de descisão.
+O mercado costuma trabalhar com dados inflados ou acumulados, o que gera decisões equivocadas sobre metas, investimentos e expansão.
 O objetivo central foi criar um *Dashboard Executivo Confiável*, capaz de responder ás principais perguntas de negócio: 
- - Qual é a receita recorrente mensal atual?
- - Estamos atingindo nossas metas de crescimento?
- - Quais segmentos e produtos sustentam nossa receita?
- - Estamos retendo clientes de forma eficiente?
- - Onde devemos concentrar esforços para escalar?
+ - **Estamos crescendo de forma saudável?**
+ - **Qual é a receita anual recorrente projetada, o negócio está sendo sustentado no ritmo atual?**
+ - **O time comercial está performando e estamos atingindo nossas metas de receita?**
+ - **Estamos perdendo clientes?**
+ - **Quais segmentos de clientes sustentam o MRR?**
+ - **Quais linhas de produto são mais relevantes e qual merece mais investimento?**
+ - **Qual é a eficiência de aquisição por segmento?**
   
 ## Objetivos do Projeto
 - Calcular corretamente MRR e ARR.
@@ -17,17 +20,17 @@ O objetivo central foi criar um *Dashboard Executivo Confiável*, capaz de respo
 - Gerar insights diferenciados para apoiar decisões executivas.
   
 ##  Estrutura do Repositório
-- `/src` → scripts SQL e DAX usados para cálculos.
-- `/data` → dados brutos e tratados (quando aplicável).
-- `/notebooks` → análises exploratórias.
+- `/sql` → scripts SQL.
+- `/data_raw` → dados brutos.
 - `/docs` → documentação complementar:
-  - `data_dictionary.md` → dicionário de dados.
-  - `architecture.md` → arquitetura do pipeline.
+  - `modelagem_dimensional.pdf` → Relacionamneto de Tabelas.
+  - `dicionario_dados.md` → dicionário de dados.
+  - `arquitetura_projeto.md` → arquitetura do pipeline.
   - `business_insights.md` → insights estratégicos.
 - `/dashboard` → arquivos do Power BI ou exportações.
 
 ## Modelagem dos dados em StarSchema
-A Modelagem completa está disponível em [`https://miro.com/app/board/uXjVGpQlsa4=/?share_link_id=957359051559`]
+A Modelagem completa está disponível em (https://miro.com/app/board/uXjVGpQlsa4=/?share_link_id=957359051559)
 
 ##  Dicionário de Dados
 O dicionário completo está disponível em [`docs/dicionario_dados.md`](docs/dicionario_dados.md).
@@ -36,12 +39,27 @@ O dicionário completo está disponível em [`docs/dicionario_dados.md`](docs/di
 Principais visualizações:
 - MRR Total vs Meta
 - ARR Total
+- Atingimento da Meta
+- Taxa de Churn
 - Distribuição por porte de cliente
 - Distribuição por linha de produto
 - LTV/CAC por segmento
+- LINK:(https://app.powerbi.com/links/N3a3WCeXsx?ctid=14cbd5a7-ec94-46ba-b314-cc0fc972a161&pbi_source=linkShare)
+- *Todos os dados foram validados em comparação a base Original, Consultas SQl e código Dax.*
 
 ##  Insights Estratégicos
-- Atingimento de metas abaixo de 40% → necessidade de reforço em aquisição.
-- SMB domina receita (43%) → foco em fidelização e upsell.
-- Produtos equilibrados → falta de um “produto hero” para puxar crescimento.
-- Churn zerado → boas práticas de retenção devem ser replicadas.
+- Atingimento de metas em 83,7%:
+Entrega resultado mas tem um gap de 16,7 prescisa ser investigado.
+
+- SMB domina 43% da receita:
+O segmento de entrada sustenta o crescimento. Fidelização e decisão executiva em Volume/Valor são chave para manter essa base saudável. [Saiba mais no link de insight](docs/insights_negocio.md)
+
+- Produtos equilibrados, mas sem destaque: 
+A linha está bem distribuída, mas falta um “carro-chefe” que concentre demanda e acelere crescimento.
+
+- Churn zerado: 
+A retenção está funcionando. O desafio agora é escalar sem perder essa vantagem competitiva.
+
+- Segmentação clara, mas com espaço para afinar ICP e foco:  
+Mid-Market é o ponto ótimo hoje. Enterprise tem potencial, mas exige retenção longa e CAC controlado.
+- Insights com mais detalhes dísponivel em [`docs/insights_negocio.md`](docs/insights_negocio.md)
