@@ -57,7 +57,7 @@ O segmento de entrada sustenta o crescimento. Fidelização e decisão executiva
 - Produtos equilibrados, mas sem destaque: 
 A linha está bem distribuída, mas falta um “carro-chefe” que concentre demanda e acelere crescimento.
 
--Churn zerado: 
+- Churn zerado: 
 A retenção está funcionando. O desafio agora é escalar sem perder essa vantagem competitiva.
 
 - Segmentação clara, mas com espaço para afinar ICP e foco:  
